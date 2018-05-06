@@ -3,7 +3,7 @@
 import { assert } from 'chai';
 import { ZalgoPromise } from 'zalgo-promise/src';
 
-import { testComponent } from '../component';
+import { testComponent, testComponentVue } from '../component';
 
 describe('vue drivers', () => {
 
@@ -83,4 +83,15 @@ describe('vue drivers', () => {
     });
 });
 
-
+describe('vue clients', () => {
+    it('should not conflict with the Vue reactivity observer', done => {
+        testComponentVue.renderIframe({
+            onError:        done,
+            objectProp:     { key: 'testval' },
+            // This lookup causes a recursion loop as the xcomponent getter, which modifies state,
+            // bounces off the Vue observer which calls the getter in response to state change
+            run:            'console.log(this.objectProp.key)',
+            childMounted:   () => done()
+        }, document.body);
+    });
+});

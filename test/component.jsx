@@ -385,3 +385,32 @@ export let testComponent_parentDomains_array_of_regex_match = xcomponent.create(
 
     url: '/base/test/child.htm?devenv=true',
 });
+
+
+export let testComponentVue = xcomponent.create({
+    tag: 'test-component-vue',
+
+    url: '/base/test/child.vue.htm?devenv=true',
+
+    props: {
+        childMounted: {
+            type: 'function',
+            required: false
+        },
+
+        stringProp: {
+            type: 'string',
+            required: false
+        },
+
+        objectProp: {
+            type: 'object',
+            required: false
+        },
+
+        run: {
+            type: 'string',
+            required: false
+        }
+    }
+});

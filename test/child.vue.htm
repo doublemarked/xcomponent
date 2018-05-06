@@ -1,0 +1,10 @@
+<body>
+    <script>
+        var parentWindow = (window.opener || window.parent);
+        window.__coverage__ = parentWindow.__coverage__;
+    </script>
+
+    <div id="#app"></div>
+
+    <script src="/base/test/child.vue.js"></script>
+</body>
